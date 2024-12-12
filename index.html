@@ -14,7 +14,7 @@
             gap: 20px;
         }
         .column {
-            flex: 1;
+            flex: 0.5;
         }
         .input-group {
             margin-bottom: 15px;
@@ -44,6 +44,12 @@
             overflow-y: auto;
             white-space: pre-wrap;
         }
+        .spacer-double {
+            margin-bottom: 30px;
+        }
+        .spacer-half {
+            margin-bottom: 7.5px;
+        }
     </style>
 </head>
 <body>
@@ -52,14 +58,16 @@
             <div class="input-group">
                 <input type="text" id="idInstance" placeholder="idInstance">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-double">
                 <input type="text" id="apiTokenInstance" placeholder="apiTokenInstance">
             </div>
             <div class="button-group">
                 <button onclick="getSettings()">getSettings</button>
+            </div>
+            <div class="button-group spacer-half">
                 <button onclick="getStateInstance()">getStateInstance</button>
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-double">
                 <input type="text" id="phoneNumberMessage" placeholder="77771234567">
             </div>
             <div class="input-group">
@@ -68,7 +76,7 @@
             <div class="button-group">
                 <button onclick="sendMessage()">sendMessage</button>
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-double">
                 <input type="text" id="phoneNumberFile" placeholder="77771234567">
             </div>
             <div class="input-group">
