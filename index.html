@@ -121,9 +121,11 @@
         function sendFileByUrl() {
             const phoneNumber = document.getElementById('phoneNumberFile').value;
             const fileUrl = document.getElementById('fileUrl').value;
+            const fileName = fileUrl.split('/').pop(); // Extract file name from URL
             const params = {
                 chatId: `${phoneNumber}@c.us`,
-                urlFile: fileUrl
+                urlFile: fileUrl,
+                fileName: fileName
             };
             callApi('sendFileByUrl', params);
         }
