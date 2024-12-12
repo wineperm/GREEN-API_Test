@@ -47,10 +47,6 @@
     <div class="container">
         <h1>GREEN-API Test</h1>
         <div class="input-group">
-            <label for="apiUrl">apiUrl</label>
-            <input type="text" id="apiUrl" placeholder="Enter apiUrl">
-        </div>
-        <div class="input-group">
             <label for="idInstance">idInstance</label>
             <input type="text" id="idInstance" placeholder="Enter idInstance">
         </div>
@@ -69,10 +65,9 @@
 
     <script>
         async function callApi(method, params, httpMethod = 'POST') {
-            const apiUrl = document.getElementById('apiUrl').value;
             const idInstance = document.getElementById('idInstance').value;
             const apiTokenInstance = document.getElementById('apiTokenInstance').value;
-            const url = `${apiUrl}/waInstance${idInstance}/${method}/${apiTokenInstance}`;
+            const url = `https://api.green-api.com/waInstance${idInstance}/${method}/${apiTokenInstance}`;
 
             try {
                 const response = await fetch(url, {
