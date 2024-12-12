@@ -14,7 +14,10 @@
             gap: 20px;
         }
         .column {
-            flex: 0.5;
+            flex: 0 0 5cm; /* Fixed width for the first column */
+        }
+        .column.output-column {
+            flex: 0 0 7cm; /* Fixed width for the second column */
         }
         .input-group {
             margin-bottom: 15px;
@@ -32,8 +35,9 @@
             margin-bottom: 15px;
         }
         .button-group button {
+            width: 100%;
             padding: 10px 20px;
-            margin-right: 10px;
+            margin-bottom: 10px;
         }
         .output {
             width: 100%;
@@ -86,7 +90,7 @@
                 <button onclick="sendFileByUrl()">sendFileByUrl</button>
             </div>
         </div>
-        <div class="column">
+        <div class="column output-column">
             <div class="output" id="output" readonly></div>
         </div>
     </div>
