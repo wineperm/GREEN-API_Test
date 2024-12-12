@@ -58,14 +58,6 @@
             <label for="apiTokenInstance">ApiTokenInstance</label>
             <input type="text" id="apiTokenInstance" placeholder="Enter ApiTokenInstance">
         </div>
-        <div class="input-group">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" placeholder="Enter phone number">
-        </div>
-        <div class="input-group">
-            <label for="message">Message</label>
-            <input type="text" id="message" placeholder="Enter message">
-        </div>
         <div class="button-group">
             <button onclick="getSettings()">getSettings</button>
             <button onclick="getStateInstance()">getStateInstance</button>
@@ -106,11 +98,9 @@
         }
 
         function sendMessage() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const message = document.getElementById('message').value;
             const params = {
-                chatId: `${phoneNumber}@c.us`,
-                message: message
+                chatId: '1234567890@c.us', // Replace with actual chatId
+                message: 'Hello, this is a test message!'
             };
             callApi('sendMessage', params);
         }
