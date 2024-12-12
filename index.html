@@ -64,18 +64,18 @@
     </div>
 
     <script>
-        async function callApi(method, params) {
+        async function callApi(method, params, httpMethod = 'POST') {
             const idInstance = document.getElementById('idInstance').value;
             const apiTokenInstance = document.getElementById('apiTokenInstance').value;
             const url = `https://api.green-api.com/waInstance${idInstance}/${method}/${apiTokenInstance}`;
 
             try {
                 const response = await fetch(url, {
-                    method: 'POST',
+                    method: httpMethod,
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(params)
+                    body: httpMethod === 'POST' ? JSON.stringify(params) : null
                 });
                 const data = await response.json();
                 document.getElementById('output').innerText = JSON.stringify(data, null, 2);
@@ -85,11 +85,11 @@
         }
 
         function getSettings() {
-            callApi('getSettings', {});
+            callApi('getSettings', {}, 'GET');
         }
 
         function getStateInstance() {
-            callApi('getStateInstance', {});
+            callApi('getStateInstance', {}, 'GET');
         }
 
         function sendMessage() {
