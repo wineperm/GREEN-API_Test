@@ -55,12 +55,16 @@
             <input type="text" id="apiTokenInstance" placeholder="Enter ApiTokenInstance">
         </div>
         <div class="input-group">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" placeholder="Enter phone number">
+            <label for="phoneNumberMessage">Phone Number for Message</label>
+            <input type="text" id="phoneNumberMessage" placeholder="Enter phone number">
         </div>
         <div class="input-group">
             <label for="message">Message</label>
             <input type="text" id="message" placeholder="Enter message">
+        </div>
+        <div class="input-group">
+            <label for="phoneNumberFile">Phone Number for File</label>
+            <input type="text" id="phoneNumberFile" placeholder="Enter phone number">
         </div>
         <div class="input-group">
             <label for="fileUrl">File URL</label>
@@ -105,7 +109,7 @@
         }
 
         function sendMessage() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
+            const phoneNumber = document.getElementById('phoneNumberMessage').value;
             const messageText = document.getElementById('message').value;
             const params = {
                 chatId: `${phoneNumber}@c.us`,
@@ -115,7 +119,7 @@
         }
 
         function sendFileByUrl() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
+            const phoneNumber = document.getElementById('phoneNumberFile').value;
             const fileUrl = document.getElementById('fileUrl').value;
             const params = {
                 chatId: `${phoneNumber}@c.us`,
