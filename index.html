@@ -24,7 +24,7 @@
             flex-direction: column;
         }
         .input-group {
-            margin-bottom: 5mm; /* 5 мм между всеми элементами */
+            margin-bottom: 5mm; /* Default margin */
         }
         .input-group label {
             display: block;
@@ -38,7 +38,7 @@
             font-style: italic;
         }
         .button-group {
-            margin-bottom: 5mm; /* 5 мм между всеми элементами */
+            margin-bottom: 5mm; /* Default margin */
         }
         .button-group button {
             width: 100%;
@@ -57,6 +57,27 @@
             font-family: 'Segoe Print', cursive;
             font-style: italic;
         }
+        .spacer-1cm {
+            margin-bottom: 1cm; /* 1 см */
+        }
+        .spacer-7mm {
+            margin-bottom: 7mm; /* 7 мм */
+        }
+        .spacer-11mm {
+            margin-bottom: 11mm; /* 11 мм */
+        }
+        .spacer-2mm {
+            margin-bottom: 2mm; /* 2 мм */
+        }
+        .spacer-12mm {
+            margin-bottom: 12mm; /* 12 мм */
+        }
+        .spacer-1.5mm {
+            margin-bottom: 1.5mm; /* 1.5 мм */
+        }
+        .spacer-3mm {
+            margin-bottom: 3mm; /* 3 мм */
+        }
         .output-header {
             margin-bottom: 10px;
             font-weight: bold;
@@ -71,28 +92,28 @@
             <div class="input-group">
                 <input type="text" id="idInstance" placeholder="idInstance">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-1cm">
                 <input type="text" id="apiTokenInstance" placeholder="apiTokenInstance">
             </div>
-            <div class="button-group">
+            <div class="button-group spacer-7mm">
                 <button onclick="getSettings()">getSettings</button>
             </div>
-            <div class="button-group">
+            <div class="button-group spacer-11mm">
                 <button onclick="getStateInstance()">getStateInstance</button>
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-2mm">
                 <input type="text" id="phoneNumberMessage" placeholder="77771234567">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-2mm">
                 <input type="text" id="message" placeholder="Hello World!">
             </div>
-            <div class="button-group">
+            <div class="button-group spacer-12mm">
                 <button onclick="sendMessage()">sendMessage</button>
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-1.5mm">
                 <input type="text" id="phoneNumberFile" placeholder="77771234567">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-3mm">
                 <input type="text" id="fileUrl" placeholder="https://my.site.com/img/horse.png">
             </div>
             <div class="button-group">
