@@ -10,14 +10,11 @@
             margin: 20px;
         }
         .container {
-            display: flex;
-            gap: 20px;
-        }
-        .column {
-            flex: 1;
+            max-width: 600px;
+            margin: auto;
         }
         .input-group {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .input-group label {
             display: block;
@@ -29,117 +26,48 @@
             box-sizing: border-box;
         }
         .button-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .button-group button {
             padding: 10px 20px;
             margin-right: 10px;
         }
-        .response {
+        .output {
+            width: 100%;
+            height: 200px;
             border: 1px solid #ccc;
             padding: 10px;
-            height: 100%;
-            white-space: pre-wrap;
+            box-sizing: border-box;
             overflow-y: auto;
-        }
-        .spacer {
-            margin-bottom: 20px;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="column">
-            <div class="input-group">
-                <label for="idInstance">idInstance</label>
-                <input type="text" id="idInstance" value="" readonly>
-            </div>
-            <div class="input-group">
-                <label for="apiTokenInstance">apiTokenInstance</label>
-                <input type="text" id="apiTokenInstance" value="" readonly>
-            </div>
-            <div class="spacer"></div>
-            <div class="button-group">
-                <button onclick="getSettings()">getSettings</button>
-            </div>
-            <div class="button-group">
-                <button onclick="getStateInstance()">getStateInstance</button>
-            </div>
-            <div class="spacer"></div>
-            <div class="input-group">
-                <label for="messageNumber">Номер для сообщения</label>
-                <input type="text" id="messageNumber" placeholder="Введите номер">
-            </div>
-            <div class="input-group">
-                <label for="messageText">Текст сообщения</label>
-                <input type="text" id="messageText" placeholder="Введите текст сообщения">
-            </div>
-            <div class="button-group">
-                <button onclick="sendMessage()">sendMessage</button>
-            </div>
-            <div class="spacer"></div>
-            <div class="input-group">
-                <label for="fileNumber">Номер для файла</label>
-                <input type="text" id="fileNumber" placeholder="Введите номер">
-            </div>
-            <div class="input-group">
-                <label for="fileUrl">URL файла</label>
-                <input type="text" id="fileUrl" placeholder="Введите URL файла">
-            </div>
-            <div class="button-group">
-                <button onclick="sendFileByUrl()">sendFileByUrl</button>
-            </div>
+        <h1>GREEN-API Test</h1>
+        <div class="input-group">
+            <label for="idInstance">idInstance</label>
+            <input type="text" id="idInstance" placeholder="Enter idInstance">
         </div>
-        <div class="column">
-            <div class="response" id="response">Response will be displayed here</div>
+        <div class="input-group">
+            <label for="apiTokenInstance">ApiTokenInstance</label>
+            <input type="text" id="apiTokenInstance" placeholder="Enter ApiTokenInstance">
         </div>
+        <div class="button-group">
+            <button onclick="getSettings()">getSettings</button>
+            <button onclick="getStateInstance()">getStateInstance</button>
+            <button onclick="sendMessage()">sendMessage</button>
+            <button onclick="sendFileByUrl()">sendFileByUrl</button>
+        </div>
+        <div class="output" id="output" readonly></div>
     </div>
 
     <script>
-        const apiUrl = "https://1103.api.green-api.com"; // Базовый URL API
-
-        // Установите значения из секретов
-        document.getElementById('idInstance').value = '{{ secrets.ID_INSTANCE }}';
-        document.getElementById('apiTokenInstance').value = '{{ secrets.API_TOKEN_INSTANCE }}';
-
-        async function getSettings() {
+        async function callApi(method, params) {
             const idInstance = document.getElementById('idInstance').value;
             const apiTokenInstance = document.getElementById('apiTokenInstance').value;
-            const url = `${apiUrl}/waInstance${idInstance}/getSettings/${apiTokenInstance}`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
-            } catch (error) {
-                document.getElementById('response').innerText = `Error: ${error.message}`;
-            }
-        }
-
-        async function getStateInstance() {
-            const idInstance = document.getElementById('idInstance').value;
-            const apiTokenInstance = document.getElementById('apiTokenInstance').value;
-            const url = `${apiUrl}/waInstance${idInstance}/getStateInstance/${apiTokenInstance}`;
-
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
-            } catch (error) {
-                document.getElementById('response').innerText = `Error: ${error.message}`;
-            }
-        }
-
-        async function sendMessage() {
-            const idInstance = document.getElementById('idInstance').value;
-            const apiTokenInstance = document.getElementById('apiTokenInstance').value;
-            const messageNumber = document.getElementById('messageNumber').value;
-            const messageText = document.getElementById('messageText').value;
-            const url = `${apiUrl}/waInstance${idInstance}/sendMessage/${apiTokenInstance}`;
-            const payload = {
-                chatId: `${messageNumber}@c.us`, // Замените на ваш chatId
-                message: messageText
-            };
+            const url = `https://api.green-api.com/waInstance${idInstance}/${method}/${apiTokenInstance}`;
 
             try {
                 const response = await fetch(url, {
@@ -147,41 +75,38 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(params)
                 });
                 const data = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+                document.getElementById('output').innerText = JSON.stringify(data, null, 2);
             } catch (error) {
-                document.getElementById('response').innerText = `Error: ${error.message}`;
+                document.getElementById('output').innerText = `Error: ${error.message}`;
             }
         }
 
-        async function sendFileByUrl() {
-            const idInstance = document.getElementById('idInstance').value;
-            const apiTokenInstance = document.getElementById('apiTokenInstance').value;
-            const fileNumber = document.getElementById('fileNumber').value;
-            const fileUrl = document.getElementById('fileUrl').value;
-            const url = `${apiUrl}/waInstance${idInstance}/sendFileByUrl/${apiTokenInstance}`;
-            const payload = {
-                chatId: `${fileNumber}@c.us`, // Замените на ваш chatId
-                urlFile: fileUrl, // Прямая ссылка на изображение
-                fileName: "KLS_netology_12.07.2004.jpeg", // Имя файла
-                caption: "Изображение из GitHub" // Описание файла (необязательно)
-            };
+        function getSettings() {
+            callApi('getSettings', {});
+        }
 
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-                const data = await response.json();
-                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
-            } catch (error) {
-                document.getElementById('response').innerText = `Error: ${error.message}`;
-            }
+        function getStateInstance() {
+            callApi('getStateInstance', {});
+        }
+
+        function sendMessage() {
+            const params = {
+                chatId: '1234567890@c.us', // Replace with actual chatId
+                message: 'Hello, this is a test message!'
+            };
+            callApi('sendMessage', params);
+        }
+
+        function sendFileByUrl() {
+            const params = {
+                chatId: '1234567890@c.us', // Replace with actual chatId
+                urlFile: 'https://example.com/path/to/file.jpg', // Replace with actual file URL
+                fileName: 'file.jpg'
+            };
+            callApi('sendFileByUrl', params);
         }
     </script>
 </body>
