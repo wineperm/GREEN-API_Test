@@ -10,8 +10,17 @@
             margin: 20px;
         }
         .container {
-            max-width: 600px;
+            display: flex;
+            max-width: 1000px;
             margin: auto;
+        }
+        .left-column, .right-column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .left-column {
+            border-right: 1px solid #ccc;
         }
         .input-group {
             margin-bottom: 10px;
@@ -42,21 +51,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="input-group">
-            <label for="idInstance">idInstance</label>
-            <input type="text" id="idInstance" value="1103162795" readonly>
+        <div class="left-column">
+            <div class="input-group">
+                <label for="idInstance">idInstance</label>
+                <input type="text" id="idInstance" value="1103162795" readonly>
+            </div>
+            <div class="input-group">
+                <label for="apiTokenInstance">apiTokenInstance</label>
+                <input type="text" id="apiTokenInstance" value="4e7d60f393114e1b8e25a59e3e29e525ec7593206126457898" readonly>
+            </div>
+            <div class="button-group">
+                <button onclick="getSettings()">getSettings</button>
+                <button onclick="getStateInstance()">getStateInstance</button>
+                <button onclick="sendMessage()">sendMessage</button>
+                <button onclick="sendFileByUrl()">sendFileByUrl</button>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="apiTokenInstance">apiTokenInstance</label>
-            <input type="text" id="apiTokenInstance" value="4e7d60f393114e1b8e25a59e3e29e525ec7593206126457898" readonly>
+        <div class="right-column">
+            <div class="response" id="response">Response will be displayed here</div>
         </div>
-        <div class="button-group">
-            <button onclick="getSettings()">getSettings</button>
-            <button onclick="getStateInstance()">getStateInstance</button>
-            <button onclick="sendMessage()">sendMessage</button>
-            <button onclick="sendFileByUrl()">sendFileByUrl</button>
-        </div>
-        <div class="response" id="response">Response will be displayed here</div>
     </div>
 
     <script>
