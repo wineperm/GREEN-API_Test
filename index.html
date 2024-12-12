@@ -11,16 +11,10 @@
         }
         .container {
             display: flex;
-            max-width: 1000px;
-            margin: auto;
+            gap: 20px;
         }
-        .left-column, .right-column {
+        .column {
             flex: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .left-column {
-            border-right: 1px solid #ccc;
         }
         .input-group {
             margin-bottom: 10px;
@@ -44,36 +38,69 @@
         .response {
             border: 1px solid #ccc;
             padding: 10px;
-            min-height: 100px;
+            height: 100%;
             white-space: pre-wrap;
+            overflow-y: auto;
+        }
+        .spacer {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="left-column">
+        <div class="column">
             <div class="input-group">
                 <label for="idInstance">idInstance</label>
-                <input type="text" id="idInstance" value="1103162795" readonly>
+                <input type="text" id="idInstance" value="" readonly>
             </div>
             <div class="input-group">
                 <label for="apiTokenInstance">apiTokenInstance</label>
-                <input type="text" id="apiTokenInstance" value="4e7d60f393114e1b8e25a59e3e29e525ec7593206126457898" readonly>
+                <input type="text" id="apiTokenInstance" value="" readonly>
             </div>
+            <div class="spacer"></div>
             <div class="button-group">
                 <button onclick="getSettings()">getSettings</button>
+            </div>
+            <div class="button-group">
                 <button onclick="getStateInstance()">getStateInstance</button>
+            </div>
+            <div class="spacer"></div>
+            <div class="input-group">
+                <label for="messageNumber">Номер для сообщения</label>
+                <input type="text" id="messageNumber" placeholder="Введите номер">
+            </div>
+            <div class="input-group">
+                <label for="messageText">Текст сообщения</label>
+                <input type="text" id="messageText" placeholder="Введите текст сообщения">
+            </div>
+            <div class="button-group">
                 <button onclick="sendMessage()">sendMessage</button>
+            </div>
+            <div class="spacer"></div>
+            <div class="input-group">
+                <label for="fileNumber">Номер для файла</label>
+                <input type="text" id="fileNumber" placeholder="Введите номер">
+            </div>
+            <div class="input-group">
+                <label for="fileUrl">URL файла</label>
+                <input type="text" id="fileUrl" placeholder="Введите URL файла">
+            </div>
+            <div class="button-group">
                 <button onclick="sendFileByUrl()">sendFileByUrl</button>
             </div>
         </div>
-        <div class="right-column">
+        <div class="column">
             <div class="response" id="response">Response will be displayed here</div>
         </div>
     </div>
 
     <script>
         const apiUrl = "https://1103.api.green-api.com"; // Базовый URL API
+
+        // Установите значения из секретов
+        document.getElementById('idInstance').value = process.env.ID_INSTANCE;
+        document.getElementById('apiTokenInstance').value = process.env.API_TOKEN_INSTANCE;
 
         async function getSettings() {
             const idInstance = document.getElementById('idInstance').value;
@@ -106,10 +133,12 @@
         async function sendMessage() {
             const idInstance = document.getElementById('idInstance').value;
             const apiTokenInstance = document.getElementById('apiTokenInstance').value;
+            const messageNumber = document.getElementById('messageNumber').value;
+            const messageText = document.getElementById('messageText').value;
             const url = `${apiUrl}/waInstance${idInstance}/sendMessage/${apiTokenInstance}`;
             const payload = {
-                chatId: "79028326742@c.us", // Замените на ваш chatId
-                message: "I use Green-API to send this message to you!"
+                chatId: `${messageNumber}@c.us`, // Замените на ваш chatId
+                message: messageText
             };
 
             try {
@@ -130,10 +159,12 @@
         async function sendFileByUrl() {
             const idInstance = document.getElementById('idInstance').value;
             const apiTokenInstance = document.getElementById('apiTokenInstance').value;
+            const fileNumber = document.getElementById('fileNumber').value;
+            const fileUrl = document.getElementById('fileUrl').value;
             const url = `${apiUrl}/waInstance${idInstance}/sendFileByUrl/${apiTokenInstance}`;
             const payload = {
-                chatId: "79028326742@c.us", // Замените на ваш chatId
-                urlFile: "https://github.com/wineperm/Diplom-yc/raw/main/APP/html/KLS_netology_12.07.2004.jpeg", // Прямая ссылка на изображение
+                chatId: `${fileNumber}@c.us`, // Замените на ваш chatId
+                urlFile: fileUrl, // Прямая ссылка на изображение
                 fileName: "KLS_netology_12.07.2004.jpeg", // Имя файла
                 caption: "Изображение из GitHub" // Описание файла (необязательно)
             };
