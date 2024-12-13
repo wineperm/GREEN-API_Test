@@ -14,17 +14,17 @@
             gap: 20px;
         }
         .column {
-            flex: 0 0 7cm; /* Fixed width for the first column */
+            flex: 0 0 7cm; 
             display: flex;
             flex-direction: column;
         }
         .column.output-column {
-            flex: 0 0 9cm; /* Fixed width for the second column */
+            flex: 0 0 9cm; 
             display: flex;
             flex-direction: column;
         }
         .input-group {
-            margin-bottom: 5mm; /* Default margin */
+            margin-bottom: 5mm; 
         }
         .input-group label {
             display: block;
@@ -38,7 +38,7 @@
             font-style: italic;
         }
         .button-group {
-            margin-bottom: 5mm; /* Default margin */
+            margin-bottom: 5mm; 
         }
         .button-group button {
             width: 100%;
@@ -55,28 +55,28 @@
             white-space: pre-wrap;
             font-family: 'Segoe Print', cursive;
             font-style: italic;
-            height: 170mm !important; /* Adjusted height */
+            height: 172mm !important; 
         }
         .spacer-1cm {
-            margin-bottom: 1cm; /* 1 см */
+            margin-bottom: 1cm; 
         }
         .spacer-7mm {
-            margin-bottom: 7mm; /* 7 мм */
+            margin-bottom: 7mm; 
         }
         .spacer-11mm {
-            margin-bottom: 11mm; /* 11 мм */
+            margin-bottom: 11mm; 
         }
         .spacer-2mm {
-            margin-bottom: 2mm; /* 2 мм */
+            margin-bottom: 2mm; 
         }
         .spacer-12mm {
-            margin-bottom: 12mm; /* 12 мм */
+            margin-bottom: 12mm; 
         }
         .spacer-1.5mm {
-            margin-bottom: 2mm; /* 2 мм */
+            margin-bottom: 2mm; 
         }
         .spacer-3mm {
-            margin-bottom: 3mm; /* 3 мм */
+            margin-bottom: 3mm;
         }
         .output-header {
             margin-bottom: 10px;
@@ -168,7 +168,7 @@
         function sendFileByUrl() {
             const phoneNumber = document.getElementById('phoneNumberFile').value;
             const fileUrl = document.getElementById('fileUrl').value;
-            const fileName = fileUrl.split('/').pop(); // Extract file name from URL
+            const fileName = fileUrl.split('/').pop(); 
             const params = {
                 chatId: `${phoneNumber}@c.us`,
                 urlFile: fileUrl,
