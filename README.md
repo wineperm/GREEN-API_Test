@@ -17,8 +17,8 @@ https://wineperm.github.io/GREEN-API_Test/
 
 1. **Клонирование репозитория**:
    ```sh
-   git clone https://github.com/your-username/green-api-test.git
-   cd green-api-test
+   git clone https://github.com/wineperm/GREEN-API_Test.git
+   cd GREEN-API_Test
    ```
 
 2. **Настройка переменных окружения**:
