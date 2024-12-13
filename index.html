@@ -14,17 +14,17 @@
             gap: 20px;
         }
         .column {
-            flex: 0 0 7cm; 
+            flex: 0 0 7cm;
             display: flex;
             flex-direction: column;
         }
         .column.output-column {
-            flex: 0 0 9cm; 
+            flex: 0 0 9cm;
             display: flex;
             flex-direction: column;
         }
         .input-group {
-            margin-bottom: 5mm; 
+            margin-bottom: 5mm;
         }
         .input-group label {
             display: block;
@@ -38,7 +38,7 @@
             font-style: italic;
         }
         .button-group {
-            margin-bottom: 5mm; 
+            margin-bottom: 5mm;
         }
         .button-group button {
             width: 100%;
@@ -55,28 +55,7 @@
             white-space: pre-wrap;
             font-family: 'Segoe Print', cursive;
             font-style: italic;
-            height: 173mm !important; 
-        }
-        .spacer-1cm {
-            margin-bottom: 1cm; 
-        }
-        .spacer-7mm {
-            margin-bottom: 7mm; 
-        }
-        .spacer-11mm {
-            margin-bottom: 11mm; 
-        }
-        .spacer-2mm {
-            margin-bottom: 2mm; 
-        }
-        .spacer-12mm {
-            margin-bottom: 12mm; 
-        }
-        .spacer-1.5mm {
-            margin-bottom: 2mm; 
-        }
-        .spacer-3mm {
-            margin-bottom: 3mm;
+            height: 173mm !important;
         }
         .output-header {
             margin-bottom: 10px;
@@ -92,28 +71,28 @@
             <div class="input-group">
                 <input type="text" id="idInstance" placeholder="idInstance">
             </div>
-            <div class="input-group spacer-1cm">
+            <div class="input-group">
                 <input type="text" id="apiTokenInstance" placeholder="ApiTokenInstance">
             </div>
-            <div class="button-group spacer-7mm">
-                <button onclick="getSettings()">getSettings</button>
+            <div class="button-group">
+                <button onclick="callApi('getSettings', {}, 'GET')">getSettings</button>
             </div>
-            <div class="button-group spacer-11mm">
-                <button onclick="getStateInstance()">getStateInstance</button>
+            <div class="button-group">
+                <button onclick="callApi('getStateInstance', {}, 'GET')">getStateInstance</button>
             </div>
-            <div class="input-group spacer-2mm">
+            <div class="input-group">
                 <input type="text" id="phoneNumberMessage" placeholder="77771234567">
             </div>
-            <div class="input-group spacer-2mm">
+            <div class="input-group">
                 <input type="text" id="message" placeholder="Hello World!">
             </div>
-            <div class="button-group spacer-12mm">
+            <div class="button-group">
                 <button onclick="sendMessage()">sendMessage</button>
             </div>
-            <div class="input-group spacer-2mm">
+            <div class="input-group">
                 <input type="text" id="phoneNumberFile" placeholder="77771234567">
             </div>
-            <div class="input-group spacer-3mm">
+            <div class="input-group">
                 <input type="text" id="fileUrl" placeholder="https://my.site.com/img/horse.png">
             </div>
             <div class="button-group">
@@ -147,14 +126,6 @@
             }
         }
 
-        function getSettings() {
-            callApi('getSettings', {}, 'GET');
-        }
-
-        function getStateInstance() {
-            callApi('getStateInstance', {}, 'GET');
-        }
-
         function sendMessage() {
             const phoneNumber = document.getElementById('phoneNumberMessage').value;
             const messageText = document.getElementById('message').value;
@@ -168,7 +139,7 @@
         function sendFileByUrl() {
             const phoneNumber = document.getElementById('phoneNumberFile').value;
             const fileUrl = document.getElementById('fileUrl').value;
-            const fileName = fileUrl.split('/').pop(); 
+            const fileName = fileUrl.split('/').pop();
             const params = {
                 chatId: `${phoneNumber}@c.us`,
                 urlFile: fileUrl,
