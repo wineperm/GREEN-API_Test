@@ -57,6 +57,24 @@
             font-style: italic;
             height: 173mm !important;
         }
+        .spacer-1cm {
+            margin-bottom: 1cm;
+        }
+        .spacer-7mm {
+            margin-bottom: 7mm;
+        }
+        .spacer-11mm {
+            margin-bottom: 11mm;
+        }
+        .spacer-2mm {
+            margin-bottom: 2mm;
+        }
+        .spacer-12mm {
+            margin-bottom: 12mm;
+        }
+        .spacer-3mm {
+            margin-bottom: 3mm;
+        }
         .output-header {
             margin-bottom: 10px;
             font-weight: bold;
@@ -71,28 +89,28 @@
             <div class="input-group">
                 <input type="text" id="idInstance" placeholder="idInstance">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-1cm">
                 <input type="text" id="apiTokenInstance" placeholder="ApiTokenInstance">
             </div>
-            <div class="button-group">
+            <div class="button-group spacer-7mm">
                 <button onclick="callApi('getSettings', {}, 'GET')">getSettings</button>
             </div>
-            <div class="button-group">
+            <div class="button-group spacer-11mm">
                 <button onclick="callApi('getStateInstance', {}, 'GET')">getStateInstance</button>
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-2mm">
                 <input type="text" id="phoneNumberMessage" placeholder="77771234567">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-2mm">
                 <input type="text" id="message" placeholder="Hello World!">
             </div>
-            <div class="button-group">
+            <div class="button-group spacer-12mm">
                 <button onclick="sendMessage()">sendMessage</button>
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-2mm">
                 <input type="text" id="phoneNumberFile" placeholder="77771234567">
             </div>
-            <div class="input-group">
+            <div class="input-group spacer-3mm">
                 <input type="text" id="fileUrl" placeholder="https://my.site.com/img/horse.png">
             </div>
             <div class="button-group">
