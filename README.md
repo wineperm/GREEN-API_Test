@@ -53,4 +53,4 @@ https://wineperm.github.io/GREEN-API_Test/
 
 ![Alt text](https://github.com/wineperm/GREEN-API_Test/blob/main/check.jpg)
 
-Проверка работоспособности
+Проверка работоспособности &#8593
